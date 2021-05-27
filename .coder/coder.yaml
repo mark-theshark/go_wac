@@ -48,9 +48,9 @@ workspace:
             fi 
             echo 'building dependencies'  
             cd $REPO_1_PATH
-            go build commissions.go
-            cd $REPO_2_PATH
             go build server.go
+            cd $REPO_2_PATH
+            go build commissions.go
 
         - name: "install fzf fuzzy find and vim editor"
           directory: /home/coder/
