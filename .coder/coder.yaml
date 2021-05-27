@@ -1,0 +1,72 @@
+version: 0.2
+workspace:
+  type: kubernetes
+  specs:
+    kubernetes:
+      image:
+        value: index.docker.io/marktmilligan/golang-goland:latest
+      container-based-vm:
+        value: false
+      cpu: 
+        value: 1
+      memory:
+        value: 1 
+      disk:
+        value: 10
+      gpu-count:
+        value: 0
+      labels:
+        value:  
+          com.coder.custom.chargeback: "golang_team19"
+  configure:
+    start:
+      value:
+        - name: set ssh keys and clone and build (dependencies) for golang projects
+          directory: /home/coder/
+          shell: /bin/bash
+          command: |
+            continue-on-error: true
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            REPO_1_PATH=$HOME/chi_helloworld
+            REPO_2_PATH=$HOME/commissions
+            if [ -d $REPO_1_PATH ]; then
+              echo 'chi repo already exists - skip clone'
+            else
+              git clone git@github.com:mtm20176/chi_helloworld.git 
+              echo 'cloned chi web framework repo'
+            fi  
+            if [ -d $REPO_2_PATH ]; then
+              echo 'command line go repo already exists - skip clone'
+            else
+              git clone git@github.com:mtm20176/commissions.git 
+              echo 'cloned cli commissions repo'
+            fi 
+            echo 'building dependencies'  
+            cd $REPO_1_PATH
+            go commissions.go
+            cd $REPO_2_PATH
+            go server.go
+
+        - name: "install fzf fuzzy find and vim editor"
+          directory: /home/coder/
+          shell: /bin/bash
+          command: |
+            continue-on-error: true
+            if [ -f "/etc/arch-release" ]; then
+              echo "Arch Linux"
+              sudo pacman -S fzf --noconfirm
+              sudo pacman -S vim --noconfirm
+              echo 'installed fzf and nim'
+            elif [ -f "/etc/lsb-release" ]; then
+              echo "Ubuntu" 
+              sudo apt update
+              sudo apt install fzf
+              sudo apt install vim
+              echo 'installed fzf and nim'
+            fi             
+  dev-urls:
+    value:
+      - name: goapp
+        port: 3000
+        scheme: http
+        access: org
