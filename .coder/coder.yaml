@@ -21,6 +21,11 @@ workspace:
   configure:
     start:
       value:
+        - name: install 1 vscode extensions (vsix) from open vsx
+          continue-on-error: true
+          directory: /home/coder/
+          shell: /bin/bash
+          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension golang.Go        
         - name: set ssh keys and clone and build (dependencies) for golang projects
           directory: /home/coder/
           shell: /bin/bash
