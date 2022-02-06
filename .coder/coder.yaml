@@ -8,9 +8,9 @@ workspace:
       container-based-vm:
         value: false
       cpu: 
-        value: 3
+        value: 4
       memory:
-        value: 3 
+        value: 4 
       disk:
         value: 10
       gpu-count:
@@ -21,11 +21,26 @@ workspace:
   configure:
     start:
       value:
-        - name: install 1 vscode extensions (vsix) from open vsx
+        - name: install Go VS Code extension from the Open VSX marketplace
           continue-on-error: true
           directory: /home/coder/
           shell: /bin/bash
-          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension golang.Go        
+          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension golang.Go  
+        - name: install Tabnine AI Autocomplete VS Code extension from the Open VSX marketplace
+          continue-on-error: true
+          directory: /home/coder/
+          shell: /bin/bash
+          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension TabNine.tabnine-vscode 
+        - name: install Red Hat YAML VS Code extension from the Open VSX marketplace
+          continue-on-error: true
+          directory: /home/coder/
+          shell: /bin/bash
+          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension redhat.vscode-yaml  
+        - name: install GitLens VS Code extension from the Open VSX marketplace
+          continue-on-error: true
+          directory: /home/coder/
+          shell: /bin/bash
+          command: SERVICE_URL=https://open-vsx.org/vscode/gallery ITEM_URL=https://open-vsx.org/vscode/item /var/tmp/coder/code-server/bin/code-server --install-extension eamodio.gitlens                      
         - name: set ssh keys and clone and build (dependencies) for golang projects
           directory: /home/coder/
           shell: /bin/bash
