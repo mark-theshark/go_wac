@@ -21,12 +21,8 @@ files with either the `.yaml` or `.yml` extension.
 > A Coder workspace is an isolated pod and inner container managed by the Coder control plane running in a namespace of a Kubernetes cluster. The Coder deployments below are running on GCP GKE.
 
 
-
-###### mark.coder.com
-[![Open in Coder](https://cdn.coder.com/embed-button.svg)](https://mark.coder.com/wac/build?template_oauth_service=github&template_url=git@github.com:mtm20176/go_wac.git&template_ref=main&template_filepath=.coder/coder.yaml)
-
 ###### clean.demo.coder.com
-[![Open in Coder](https://cdn.coder.com/embed-button.svg)](https://clean.demo.coder.com/wac/build?template_oauth_service=github&template_url=git@github.com:mtm20176/go_wac.git&template_ref=main&template_filepath=.coder/coder.yaml)
+[![Open in Coder](https://clean.demo.coder.com/static/image/embed-button.svg)](https://clean.demo.coder.com/wac/build?template_oauth_service=625ff6b7-9e0fbb71f34a2ed66ae5a2e5&template_url=https://github.com/mtm20176/go_wac.git&template_ref=main&template_filepath=.coder/coder.yaml)
 
 
 ###### This is a Coder template repo to :
